@@ -6,7 +6,7 @@ Parse.Cloud.define('hello', function(req, res) {
 
 Parse.Cloud.define('heartUser', function(request, response) {
   
-  Parse.Cloud.useMasterKey();
+  
   
   var query = new Parse.Query(Parse.User); 
 
@@ -15,7 +15,7 @@ Parse.Cloud.define('heartUser', function(request, response) {
       query.first({
             success: function(object) {
 
-               object.increment('hearts');
+               object.increment({ useMasterKey: true })('hearts');
 
                   //do something to the object
 
