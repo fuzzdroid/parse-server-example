@@ -23,6 +23,6 @@ Parse.Cloud.useMasterKey();
 
 });
 
-});
+
 
 
