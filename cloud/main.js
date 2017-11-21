@@ -5,3 +5,9 @@ Parse.Cloud.define('hello', function(req, res) {
 
 
 
+
+Parse.Cloud.define('heartIt', function(req, res) {
+  res.success('Heartsss');
+});
+
+
