@@ -22,3 +22,4 @@ user.fetch().then(function(concreteUser){
 },function(error){
     res.error(error);
 });
+});
