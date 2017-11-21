@@ -4,25 +4,16 @@ Parse.Cloud.define('hello', function(req, res) {
 });
 
 
-Parse.Cloud.define('heartUser', function(request, response) {
-  
-Parse.Cloud.useMasterKey();
+Parse.Cloud.define('heartUser', function(req, res) {
 
- query = new Parse.Query(“User”);
-                  query.get(request.object.get(“itemId"), {
-                            success: function(post) {
-                            post.increment(“hearts”, 1);
-                            post.save();
-                            response.success();
-                            },
-                            error: function(error) {
-                            console.error("Got an error " + error.code + " : " + error.message);
-                            response.error();
-                            }
-                            });
+Parse.Cloud.useMasterKey();
+               var user = new Parse.Object('User');
+               user.userName = req.params.userName;
+               user.increment('hearts');
+               user.save;
+  res.success('yo');
 
 });
-
 
 
 
