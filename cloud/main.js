@@ -4,10 +4,10 @@ Parse.Cloud.define('hello', function(req, res) {
 });
 
 
-Parse.Cloud.define(“heartIt”, function(request, response) {
+Parse.Cloud.define('heartIt', function(req, res) {
 
 Parse.Cloud.useMasterKey();
-var userId =request.params.itemId;
+var userId =req.params.itemId;
 var user = new Parse.User();
 user.set("objectId", userId);
 user.fetch().then(function(concreteUser){
@@ -16,9 +16,9 @@ user.fetch().then(function(concreteUser){
     concreteUser.save().then(function(incrementedUser){
         response.success();
     },function(saveError){
-        response.error(saveError);
+        res.error(saveError);
     });
 
 },function(error){
-    response.error(error);
+    res.error(error);
 });
