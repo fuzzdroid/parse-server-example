@@ -4,7 +4,9 @@ Parse.Cloud.define('hello', function(req, res) {
 });
 
 
-Parse.Cloud.define(“heartUser”, function(request, response) {
+Parse.Cloud.define('heartUser', function(request, response) {
+  
+Parse.Cloud.useMasterKey();
 
     var shareQuery = new Parse.Query(“User”);
     shareQuery.get(request.params.userName, {
@@ -16,7 +18,7 @@ Parse.Cloud.define(“heartUser”, function(request, response) {
       error: function(error) {
         console.error(error)
       },
-      useMasterKey: true
+      
     });
 
   });
