@@ -8,19 +8,21 @@ Parse.Cloud.define('heartUser', function(request, response) {
   
 Parse.Cloud.useMasterKey();
 
-    var shareQuery = new Parse.Query(“User”);
-    shareQuery.get(request.params.userName, {
-      success: function(object) {
-        console.log(object)
-        object.increment(“hearts”);
-        object.save();
-      },
-      error: function(error) {
-        console.error(error)
-      },
-      
-    });
+ query = new Parse.Query(“User”);
+                  query.get(request.object.get(“itemId"), {
+                            success: function(post) {
+                            post.increment(“hearts”, 1);
+                            post.save();
+                            response.success();
+                            },
+                            error: function(error) {
+                            console.error("Got an error " + error.code + " : " + error.message);
+                            response.error();
+                            }
+                            });
 
-  });
+});
+
+});
 
 
