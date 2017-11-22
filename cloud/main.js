@@ -4,7 +4,7 @@ Parse.Cloud.define('hello', function(req, res) {
 });
 
 
-Parse.Cloud.define(‘heartTap’, function(request, response) {
+Parse.Cloud.define('heartTap', function(request, response) {
   var SaveObject = Parse.Object.extend(“User”);
   var saveObject = new Parse.Query(SaveObject);
   saveObject.equalTo("objectId", request.params.userId);
