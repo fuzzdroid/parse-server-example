@@ -20,7 +20,7 @@ Parse.Cloud.define('heartTap', function(request, response) {
         	},
         error: function(error)
         	{
-                response.error("failed with error: " + error.message);
+                response.error('failed with error: ' + error.message);
         	}
     });
 });
