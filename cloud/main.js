@@ -7,7 +7,7 @@ Parse.Cloud.define('hello', function(req, res) {
 Parse.Cloud.define('heartTap', function(request, response) {
 	
     var userQuery = new Parse.Query(Parse.User);
-    userQuery.equalTo("objectId", request.params.userId);
+    userQuery.equalTo('objectId', request.params.userId);
 
     userQuery.first
     ({
