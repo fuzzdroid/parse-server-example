@@ -16,7 +16,7 @@ Parse.Cloud.define('heartTap', function(request, response) {
         	{
         	thisuser.increment('hearts');
         	thisuser.save(null, { useMasterKey: true });
-	      	response.success("ok");
+	      	response.success('ok');
         	},
         error: function(error)
         	{
