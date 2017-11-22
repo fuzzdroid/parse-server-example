@@ -4,7 +4,7 @@ Parse.Cloud.define('hello', function(req, res) {
 });
 
 
-Parse.Cloud.define(“heartTap”, function(request, response) {
+Parse.Cloud.define('heartTap', function(request, response) {
 	
     var userQuery = new Parse.Query(Parse.User);
     userQuery.equalTo("objectId", request.params.userId);
@@ -14,13 +14,13 @@ Parse.Cloud.define(“heartTap”, function(request, response) {
         useMasterKey: true,
         success: function(thisuser)
         	{
-        	thisuser.increment(“hearts”);
+        	thisuser.increment('hearts');
         	thisuser.save(null, { useMasterKey: true });
-	      	response.success("ok");
+	      	response.success('ok');
         	},
         error: function(error)
         	{
-                response.error("failed with error: " + error.message);
+                response.error('failed with error: ' + error.message);
         	}
     });
 });
