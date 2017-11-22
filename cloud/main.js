@@ -5,23 +5,22 @@ Parse.Cloud.define('hello', function(req, res) {
 
 
 Parse.Cloud.define('heartTap', function(request, response) {
-  var SaveObject = Parse.Object.extend('Parse.User');
-  var saveObject = new Parse.Query(SaveObject);
-  saveObject.equalTo('objectId', request.params.userId);
-  saveObject.first({
-    useMasterKey: true,
-    success: function(Objects) {
-      Objects.save(null, {
+	
+    var userQuery = new Parse.Query(Parse.User);
+    userQuery.equalTo("objectId", request.params.userId);
+
+    userQuery.first
+    ({
         useMasterKey: true,
-        success: function(object) {
-          object.increment('hearts');
-          object.save();
-          console.log('Cloud Code: hearts rating has increased by 1.', object);
-          response.success('Cloud Code: hearts rating has increased by 1.');
-
-        }
-      });
-    }
-  });
-
+        success: function(thisuser)
+        	{
+        	thisuser.increment("hearts");
+        	thisuser.save(null, { useMasterKey: true });
+	      	response.success("ok");
+        	},
+        error: function(error)
+        	{
+                response.error("failed with error: " + error.message);
+        	}
+    });
 });
