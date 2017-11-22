@@ -7,14 +7,14 @@ Parse.Cloud.define('hello', function(req, res) {
 Parse.Cloud.define('heartTap', function(request, response) {
 var user = new Parse.User();
 var query = new Parse.Query(Parse.User);
-query.equalTo("objectId", request.params.userId);
+query.equalTo('objectId', request.params.userId);
 query.first({
 useMasterKey: true,
 success: function(object) {
-object.increment(“hearts”);
+object.increment('hearts');
 object.save();
 // Set the job's success status
-response.success("Success Message");
+response.success('Success Message');
 },
 error: function(error) {
 // Set the job's error status
