@@ -4,16 +4,16 @@ Parse.Cloud.define('hello', function(req, res) {
 });
 
 
-Parse.Cloud.define(“heartTap”, function(request, response) {
+Parse.Cloud.define('heartTap', function(request, response) {
   
 
-    var User = Parse.Object.extend("User");
+    var User = Parse.Object.extend('User');
     var user = new User();
 
     var user.id = request.params.userId;
    
 	
-user.increment(“hearts”);
+user.increment('hearts');
 
     user.save(null,{ useMasterKey:true} {
             success: function(user) {
