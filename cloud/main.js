@@ -4,22 +4,24 @@ Parse.Cloud.define('hello', function(req, res) {
 });
 
 
-Parse.Cloud.define('heartTap', function(request, response) {
-var user = new Parse.User();
-var query = new Parse.Query(Parse.User);
-query.equalTo("objectId", request.params.userId);
-query.first({
-useMasterKey: true,
-success: function(object) {
-object.increment('hearts');
-object.save({ useMasterKey: true });
-// Set the job's success status
-response.success('Success Message');
-},
-error: function(error) {
-// Set the job's error status
-response.error(request.params.userId );
-}
-}); 
+Parse.Cloud.define(‘heartTap’, function(request, response) {
+  var SaveObject = Parse.Object.extend(“User”);
+  var saveObject = new Parse.Query(SaveObject);
+  saveObject.equalTo("objectId", request.params.userId);
+  saveObject.first({
+    useMasterKey: true,
+    success: function(Objects) {
+      Objects.save(null, {
+        useMasterKey: true,
+        success: function(object) {
+          object.increment(“hearts”);
+          object.save();
+          console.log("Cloud Code: hearts rating has increased by 1.", object);
+          response.success('Cloud Code: hearts rating has increased by 1.');
+
+        }
+      });
+    }
+  });
 
 });
