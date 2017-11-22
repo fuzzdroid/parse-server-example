@@ -4,7 +4,3 @@ Parse.Cloud.define('hello', function(req, res) {
 });
 
 
-Parse.Cloud.define('heartTap', function(request, response) {
-	
-
-});
