@@ -5,22 +5,21 @@ Parse.Cloud.define('hello', function(req, res) {
 
 
 Parse.Cloud.define('heartTap', function(request, response) {
-	
-    var userQuery = new Parse.Query(Parse.User);
-    userQuery.equalTo("objectId", request.params.userId);
+var user = new Parse.User();
+var query = new Parse.Query(Parse.User);
+query.equalTo("objectId", request.params.userId);
+query.first({
+useMasterKey: true,
+success: function(object) {
+object.increment(“hearts”);
+object.save();
+// Set the job's success status
+response.success("Success Message");
+},
+error: function(error) {
+// Set the job's error status
+response.error(request.params.objectId );
+}
+}); 
 
-    userQuery.first
-    ({
-        useMasterKey: true,
-        success: function(thisuser)
-        	{
-        	thisuser.increment("hearts");
-        	thisuser.save(null, { useMasterKey: true });
-	      	response.success('ok');
-        	},
-        error: function(error)
-        	{
-                response.error('failed with error: ' + error.message);
-        	}
-    });
 });
