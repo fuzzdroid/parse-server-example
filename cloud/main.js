@@ -18,7 +18,7 @@ response.success('Success Message');
 },
 error: function(error) {
 // Set the job's error status
-response.error(request.params.objectId );
+response.error(request.params.userId );
 }
 }); 
 
