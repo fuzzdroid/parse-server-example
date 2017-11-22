@@ -12,7 +12,7 @@ query.first({
 useMasterKey: true,
 success: function(object) {
 object.increment('hearts');
-object.save();
+object.save({ useMasterKey: true });
 // Set the job's success status
 response.success('Success Message');
 },
